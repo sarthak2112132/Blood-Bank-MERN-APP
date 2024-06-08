@@ -7,8 +7,8 @@ function App1() {
   const [Data1, setData1] = useState(null);
 
   const fetchData = async () => {
-    if (!["p", "f", "e", "r"].includes(NumberId)) {
-      alert("Invalid number ID. Use p, f, e, or r.");
+    if (!["primes", "fibo", "even", "rand"].includes(NumberId)) {
+      alert("Invalid number ID. Use prime, fibo, even, or rand.");
       return;
     }
     try {
@@ -28,7 +28,7 @@ function App1() {
           type="text"
           value={NumberId}
           onChange={(e) => setNumberId(e.target.value)}
-          placeholder="Enter number ID (p, f, e, r)"
+          placeholder="Enter Id"
         />
         <button onClick={fetchData}>Fetch Numbers</button>
         {Data1 && (
