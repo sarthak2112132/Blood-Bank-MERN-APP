@@ -1,58 +1,133 @@
 // import logo from './logo.svg';
-import React, { useState } from "react";
-import "./App.css";
-
-function App1() {
-  const [NumberId, setNumberId] = useState("");
-  const [Data1, setData1] = useState(null);
-
-  const fetchData = async () => {
-    if (!["primes", "fibo", "even", "rand"].includes(NumberId)) {
-      alert("Invalid number ID. Use prime, fibo, even, or rand.");
-      return;
-    }
-    try {
-      const response = await fetch(`http://localhost:9876/numbers/${NumberId}`);
-      const result = await response.json();
-      setData1(result);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
+import React from "react";
+import "./index.css";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import ProtectedRoute from "./components/Routes/ProtectedRoute";
+import PublicRoutes from "./components/Routes/PublicRoutes";
+import Donar from "./pages/Dashboard/Donar";
+import Hospital from "./pages/Dashboard/Hospital";
+import Organisation from "./pages/Dashboard/Organisation";
+import Consumer from "./pages/Dashboard/Consumer";
+import Donation from "./pages/Dashboard/Donation";
+import Analytics from "./pages/Dashboard/Analytics";
+import DonarList from "./pages/Admin/DonarList";
+import HospitalList from "./pages/Admin/HospitalList";
+import OrgList from "./pages/Admin/OrgList";
+import AdminHome from "./pages/Admin/AdminHome";
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Average Calculator</h1>
-        <input
-          type="text"
-          value={NumberId}
-          onChange={(e) => setNumberId(e.target.value)}
-          placeholder="Enter Id"
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
         />
-        <button onClick={fetchData}>Fetch Numbers</button>
-        {Data1 && (
-          <div>
-            <h2>Results</h2>
-            <p>
-              <strong>Previous Window State:</strong>{" "}
-              {JSON.stringify(Data1?.windowPrevState)}
-            </p>
-            <p>
-              <strong>Current Window State:</strong>{" "}
-              {JSON.stringify(Data1?.windowCurrState)}
-            </p>
-            <p>
-              <strong>Numbers:</strong> {JSON.stringify(Data1.numbers)}
-            </p>
-            <p>
-              <strong>Average:</strong> {Data1?.avg}
-            </p>
-          </div>
-        )}
-      </header>
-    </div>
+        <Route
+          path="/donar"
+          element={
+            <ProtectedRoute>
+              <Donar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/hospital"
+          element={
+            <ProtectedRoute>
+              <Hospital />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/organisation"
+          element={
+            <ProtectedRoute>
+              <Organisation />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/consumer"
+          element={
+            <ProtectedRoute>
+              <Consumer />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <ProtectedRoute>
+              <Analytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donar-list"
+          element={
+            <ProtectedRoute>
+              <DonarList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/hospital-list"
+          element={
+            <ProtectedRoute>
+              <HospitalList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminHome />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/org-list"
+          element={
+            <ProtectedRoute>
+              <OrgList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donation"
+          element={
+            <ProtectedRoute>
+              <Donation />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicRoutes>
+              <Login />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoutes>
+              <Register />
+            </PublicRoutes>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 
-export default App1;
+export default App;

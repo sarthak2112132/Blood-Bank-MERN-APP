@@ -1,13 +1,126 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.form-banner img{
+  width: 100%;
+  height: 100%;
+}
+@media ( min-width: 790px){
+  .form-control{
+     width: 10%;
+  }
+  .form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20vh;
+ }
+}
+
+@media (max-width :760px)
+{
+  .FORM{
+    padding-bottom: 140px;
+  }
+  .form-banner{
+    padding-bottom:0px;
+  }
+  .form-banner img{
+    height: 120%;
+  }
+  .form-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0px;
+    padding-top: 93px;
+  }
+  
+}
+
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #ff3d00;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.navbar{
+   background-color: black !important;
+}
+
+.nav-link,.navbar-brand{
+  color: white !important;
+}
+@media (max-width:508px){
+
+  .NAVBAR{
+    display: none;
+
+  }
+  .Navbar{
+    margin: 20px;
+    display: flex;
+  }
+  .nav-link{
+    color: black;
+  }
+  .EMAIL{
+   width: auto;
+  }
+}
+
+
+@media (max-width:508px)
+{
+  .TABLE{
+     width: auto;
+     height: auto;
+  }
+  .THEAD{
+    width: 50px;
+  }
+}
+
+@media (max-width :280px)
+{
+   .LOGIN{
+     width: 1750px;
+   }
+}
+
+@media (max-width :280px)
+{
+   .REGISTER{
+     width: 1750px;
+   }
 }
